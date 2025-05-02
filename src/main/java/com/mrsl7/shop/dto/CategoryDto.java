@@ -1,12 +1,13 @@
 package com.mrsl7.shop.dto;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDto {
     @NonNull
     Long id;
