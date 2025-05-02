@@ -4,6 +4,7 @@ import com.mrsl7.shop.dto.ProductDto;
 import com.mrsl7.shop.entity.Category;
 import com.mrsl7.shop.entity.Product;
 import com.mrsl7.shop.mapper.ProductMapper;
+import com.mrsl7.shop.repository.CategoryRepository;
 import com.mrsl7.shop.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository repo;
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
     private final ProductMapper mapper;
 
     @Override
     public List<ProductDto> getAll() {
-        return repo.findAll()
+        return productRepository.findAll()
                 .stream()
                 .map(mapper::toProductDto)
                 .collect(Collectors.toList());
@@ -31,21 +33,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto getById(Long id) {
-        Product entity = repo.findById(id)
+        Product entity = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found"));
         return mapper.toProductDto(entity);
     }
 
     @Override
     public ProductDto create(ProductDto dto) {
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
+
         Product entity = mapper.toProduct(dto);
-        Product saved = repo.save(entity);
+        entity.setCategory(category);
+
+        Product saved = productRepository.save(entity);
         return mapper.toProductDto(saved);
     }
 
     @Override
     public ProductDto update(Long id, ProductDto dto) {
-        Product existing = repo.findById(id)
+        Product existing = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found"));
 
         // Обновляем только нужные поля
@@ -60,15 +67,15 @@ public class ProductServiceImpl implements ProductService {
             existing.setCategory(category);
         }
 
-        Product updated = repo.save(existing);
+        Product updated = productRepository.save(existing);
         return mapper.toProductDto(updated);
     }
 
     @Override
     public void delete(Long id) {
-        if (!repo.existsById(id)) {
+        if (!productRepository.existsById(id)) {
             throw new EntityNotFoundException("Product not found");
         }
-        repo.deleteById(id);
+        productRepository.deleteById(id);
     }
 }

@@ -1,5 +1,7 @@
 package com.mrsl7.shop.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,21 +12,22 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    @NonNull
+    @NotNull
     Long id;
 
-    @NonNull
+    @NotNull
+    @Size(min = 1, max = 100)
     String name;
 
-    @NonNull
+    @NotNull
     BigDecimal price;
 
-    @NonNull
+    @NotNull
     String description;
 
-    @NonNull
+    @NotNull
     Integer quantity;
 
-    @NonNull
+    @NotNull
     Long categoryId;
 }

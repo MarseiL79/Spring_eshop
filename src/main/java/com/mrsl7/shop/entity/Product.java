@@ -1,26 +1,39 @@
 package com.mrsl7.shop.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min = 1, max = 100)
     private String name;
 
+    @NotNull
     private String description;
 
+    @NotNull
+    @PositiveOrZero
     private BigDecimal price;
 
+    @NotNull
     private Integer quantity;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;

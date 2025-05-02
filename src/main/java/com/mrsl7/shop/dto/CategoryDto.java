@@ -1,5 +1,7 @@
 package com.mrsl7.shop.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,9 +11,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDto {
-    @NonNull
+    @NotNull
     Long id;
 
-    @NonNull
+    @NotNull
+    @Size(min = 1, max = 100)
     String name;
 }
