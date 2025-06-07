@@ -12,14 +12,12 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-
-    private Long id;
-
+public class RegisterRequest {
     @NotNull
     @Size(min = 1, max = 100)
     private String username;
 
     @NotNull
-    private Set<String> roles; // просто список имён ролей
+    @Size(min = 1, max = 100)
+    String rawPassword;
 }

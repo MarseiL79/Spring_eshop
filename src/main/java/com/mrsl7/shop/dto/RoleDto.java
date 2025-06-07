@@ -12,7 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 public class RoleDto {
 
-    @NotNull
     private Long id;
 
     @NotNull

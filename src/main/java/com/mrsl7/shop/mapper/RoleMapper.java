@@ -8,6 +8,5 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface RoleMapper {
     RoleDto toRoleDto(Role role);
-
     Role toRole(RoleDto dto);
 }

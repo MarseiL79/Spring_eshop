@@ -11,7 +11,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDto {
-    @NotNull
     Long id;
 
     @NotNull
