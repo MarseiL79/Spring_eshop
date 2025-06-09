@@ -1,4 +1,6 @@
 spring:
+  thymeleaf:
+    cache: false
   datasource:
     url: jdbc:postgresql://localhost:5432/shopdb
     username: shop
@@ -9,3 +11,8 @@ spring:
     show-sql: true
 server:
   port: 8085
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.authentication.dao.DaoAuthenticationProvider: TRACE
