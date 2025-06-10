@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <title>Категории</title>
+</head>
+<body>
+<h1>Категории</h1>
+<ul>
+  <!-- перебираем модельную переменную "categories" -->
+  <li th:each="c : ${categories}">
+    <a th:href="@{/categories/{id}/products(id=${c.id})}"
+       th:text="${c.name}">Имя категории</a>
+  </li>
+</ul>
+<a th:href="@{/products}">Все товары</a>
+</body>
+</html>
