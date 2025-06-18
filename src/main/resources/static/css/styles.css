@@ -1,3 +1,13 @@
+
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+/*  index.html  */
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +17,7 @@
 }
 
 body {
-    background-color: rgba(222, 222, 222, 0.89);
+    background-color: rgba(255, 255, 255, 0.89);
 }
 
 .site-header {
@@ -178,4 +188,79 @@ body {
     margin-bottom: 5px;
 }
 
+
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+/*  categories.html  */
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+
+
+.categories_container {
+    display: flex;
+    margin: 20px;
+}
+
+.categories_list {
+    height: 100%;
+}
+
+.categories {
+    position: fixed;
+    top: 60px;            /* высота header */
+    bottom: 270px;         /* высота footer */
+    left: 30px;           /* ваш левый отступ */
+    width: calc(20% - 30px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: crimson #f0f0f0;
+    box-shadow: 5px 0 2px #f1f1f1;
+    background-color: #ffffff;
+
+    padding: 3px;
+}
+
+.categories_list_element a {
+    color: black;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    display: block;
+
+    padding: 15px 15px;
+
+
+}
+
+/* Стили «hover» */
+.categories_list_element:hover a,
+.categories_list_element.active a {
+    background-color: #eaeaea;
+    color: crimson;
+    border-radius: 15px;
+}
+
+/* Сброс при неактивном состоянии */
+.categories_list_element a {
+    background-color: transparent;
+    color: black;
+    transition: 0.3s;
+    border-radius: 15px;
+}
+
+.categories_list_element { /* li */
+    margin: 3px 15px;
+    overflow: hidden;
+    list-style: none;
+
+    position: relative;
+}
+
+/* Контейнер с карточками продуктов сдвигаем вправо */
+.categories_products_list {
+    margin-left: calc(20% + 30px);
+    padding: 20px;
+}
 

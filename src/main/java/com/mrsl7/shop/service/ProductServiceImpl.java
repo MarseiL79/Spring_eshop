@@ -78,4 +78,11 @@ public class ProductServiceImpl implements ProductService {
         }
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<ProductDto> getByCategory(Long categoryId) {
+        return productRepository.findAllByCategoryId(categoryId).stream()
+                .map(mapper::toProductDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -1,18 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet" th:href="@{/css/main.css}">
   <title>Категории</title>
+  <link href="css/styles.css" type="text/css"
+        rel="stylesheet" />
+  <link href="/img/pion.ico" rel="icon" />
 </head>
 <body>
-<h1>Категории</h1>
-<ul>
-  <!-- перебираем модельную переменную "categories" -->
-  <li th:each="c : ${categories}">
-    <a th:href="@{/categories/{id}/products(id=${c.id})}"
-       th:text="${c.name}">Имя категории</a>
-  </li>
-</ul>
-<a th:href="@{/products}">Все товары</a>
+<header class="site-header">
+  <div class="header-container">
+    <!-- Левая группа меню -->
+    <div class="nav-group">
+      <ul class="nav-list">
+        <li><a href="http://localhost:8085">Главная</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="http://localhost:8085/categories">Категории</a></li>
+        <li><a href="#">Доставка и оплата</a></li>
+      </ul>
+    </div>
+
+    <!-- Правая группа меню -->
+    <div class="nav-group">
+      <span class="phone-number">8 (918) 127-60-61</span>
+      <ul class="nav-list">
+        <li><a href="#">Заказать звонок</a></li>
+        <li><a href="#">Личный кабинет</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="categories_container">
+
+    <div class="categories">
+      <ul class="categories_list">
+        <li class="categories_list_element" th:each="c : ${categories}" data-id="[[${c.id}]]">
+          <a th:href="@{/categories/{id}/products(id=${c.id})}"
+             th:text="${c.name}">Категория</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="categories_products_list">
+      <ul>
+        <li th:each="c : ${categories}">
+          <a th:href="@{/categories/{id}/products(id=${c.id})}"
+             th:text="${c.name}">Категория</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-column">
+
+      <ul class="footer-list">
+        <li><h3>Компания</h3></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Наши преимущества</a></li>
+        <li><a href="#">Отзывы</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <ul class="footer-list">
+        <li><h3>Для покупателей</h3></li>
+        <li><a href="#">Доставка и оплата</a></li>
+        <li><a href="#">Личный кабинет</a></li>
+        <li><a href="#">Обмен и возврат</a></li>
+        <li><a href="#">Вопрос-ответ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <ul class="footer-list">
+        <li><h3>Информация</h3></li>
+        <li><a href="#">Бренды</a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">Положение о персональных данных и конфиденциальности</a></li>
+        <li><a href="#">Оферта</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <ul class="footer-list">
+        <li><h3>Наши новости</h3></li>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Доставка и оплата</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script th:src="@{/js/categories.js}"></script>
 </body>
 </html>
