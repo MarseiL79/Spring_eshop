@@ -13,17 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Загрузить под‑категории (пример API)
             const id = li.dataset.id;
             try {
-                const resp = await fetch(`/api/categories/${id}/subcategories`);
-                const subs = await resp.json();
-                // Отрисовать их справа
-                productContainer.innerHTML = subs.map(s =>
-                    `<div class="subcategory">
-             <a href="/categories/${id}/products?sub=${s.id}">${s.name}</a>
-           </div>`
-                ).join('');
+                // 4) Запрашиваем REST‑API для получения продуктов по категории
+                //    предполагаем, что у вас есть GET /api/categories/{id}/products
+                const resp = await fetch(`/api/categories/${categoryId}/products`);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const products = await resp.json();
+
+                // 5) Строим HTML-карточки продуктов и вставляем в контейнер
+                productContainer.innerHTML = products.map(p => `
+          <div class="card">
+            <img class="card__img" src="${p.imageUrl || '/img/tulen.jpg'}" alt="${p.name}">
+            <div class="card-text">
+              <h4 class="card-title">${p.name}</h4>
+              <p>${p.description || ''}</p>
+              <strong class="card-price">${p.price}₽</strong>
+            </div>
+          </div>
+        `).join('');
+
             } catch (e) {
-                productContainer.innerHTML = '<p>Ошибка загрузки.</p>';
                 console.error(e);
+                productContainer.innerHTML = `<p class="error">Не удалось загрузить товары.</p>`;
             }
         });
     });
