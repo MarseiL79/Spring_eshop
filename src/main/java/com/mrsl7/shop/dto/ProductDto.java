@@ -28,5 +28,8 @@ public class ProductDto {
     Integer quantity;
 
     @NotNull
+    String imageUrl;
+
+    @NotNull
     Long categoryId;
 }

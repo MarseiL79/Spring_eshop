@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Товары</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link href="/img/pion.ico" rel="icon" />
 </head>
 <body>
-    <h1>Hello products!</h1>
+<header class="site-header">
+    <div class="header-container">
+        <!-- Левая группа меню -->
+        <div class="nav-group">
+            <ul class="nav-list">
+                <li><a href="http://localhost:8085">Главная</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="http://localhost:8085/categories">Категории</a></li>
+                <li><a href="#">Доставка и оплата</a></li>
+            </ul>
+        </div>
+
+        <!-- Правая группа меню -->
+        <div class="nav-group">
+            <span class="phone-number">8 (918) 127-60-61</span>
+            <ul class="nav-list">
+                <li><a href="#">Заказать звонок</a></li>
+                <li><a href="#">Личный кабинет</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main class="wrapper">
+    <!--
+    <h2 th:text="${categoryName}">Имя категории</h2>
+    <div class="cards-container">
+        <div class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" class="card__img" alt="" />
+            <div class="card-text">
+                <h4 class="card-title" th:text="${p.name}">Название</h4>
+                <p th:text="${p.description}">Описание</p>
+                <strong class="card-price" th:text="${p.price} + '₽'">Цена</strong>
+            </div>
+        </div>
+    </div>    -->
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-column">
+
+            <ul class="footer-list">
+                <li><h3>Компания</h3></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Наши преимущества</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <ul class="footer-list">
+                <li><h3>Для покупателей</h3></li>
+                <li><a href="#">Доставка и оплата</a></li>
+                <li><a href="#">Личный кабинет</a></li>
+                <li><a href="#">Обмен и возврат</a></li>
+                <li><a href="#">Вопрос-ответ</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <ul class="footer-list">
+                <li><h3>Информация</h3></li>
+                <li><a href="#">Бренды</a></li>
+                <li><a href="#">Новости</a></li>
+                <li><a href="#">Положение о персональных данных и конфиденциальности</a></li>
+                <li><a href="#">Оферта</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <ul class="footer-list">
+                <li><h3>Наши новости</h3></li>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Доставка и оплата</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

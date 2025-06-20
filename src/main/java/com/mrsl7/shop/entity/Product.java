@@ -33,6 +33,9 @@ public class Product {
     @NotNull
     private Integer quantity;
 
+    @Column(nullable = true)
+    private String imageUrl;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")

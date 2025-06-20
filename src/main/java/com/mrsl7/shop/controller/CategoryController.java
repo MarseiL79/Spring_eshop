@@ -1,7 +1,9 @@
 package com.mrsl7.shop.controller;
 
 import com.mrsl7.shop.dto.CategoryDto;
+import com.mrsl7.shop.dto.ProductDto;
 import com.mrsl7.shop.service.CategoryService;
+import com.mrsl7.shop.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final ProductService productService;
 
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getAll() {
@@ -30,6 +33,12 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> getById(@PathVariable Long id) {
         CategoryDto dto = categoryService.getById(id);
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<List<ProductDto>> getProductsByCategoryId(@PathVariable Long id) {
+        List<ProductDto> productDtos = productService.getByCategory(id);
+        return ResponseEntity.ok(productDtos);
     }
 
     @PostMapping

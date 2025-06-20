@@ -36,7 +36,8 @@
 
     <div class="categories">
       <ul class="categories_list">
-        <li class="categories_list_element" th:each="c : ${categories}" data-id="[[${c.id}]]">
+        <li class="categories_list_element" th:each="c : ${categories}"
+            th:attr="data-id=${c.id}">
           <a th:href="@{/categories/{id}/products(id=${c.id})}"
              th:text="${c.name}">Категория</a>
         </li>
@@ -45,12 +46,7 @@
 
 
     <div class="categories_products_list">
-      <ul>
-        <li th:each="c : ${categories}">
-          <a th:href="@{/categories/{id}/products(id=${c.id})}"
-             th:text="${c.name}">Категория</a>
-        </li>
-      </ul>
+      <!-- JavaScript (categories.js) -->
     </div>
 
   </div>
