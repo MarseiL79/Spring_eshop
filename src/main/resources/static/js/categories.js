@@ -24,21 +24,43 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 emptyFlag = false;
             productContainer.innerHTML = `
-        <div class="cards-container">
-          ${products.map(p => `
-            <div class="card">
-              <img class="card__img"
-                   src="${p.imageUrl || '/img/tulen.jpg'}"
-                   alt="${p.name}">
-              <div class="card-text">
-                <h4 class="card-title">${p.name}</h4>
-                <p>${p.description || ''}</p>
-                <strong class="card-price">${p.price}$</strong>
+  <div class="cards-container">
+    ${products.map(p => {
+                if (p.discountPercent && p.discountPercent !== 0) {
+                    // есть скидка
+                    return `
+          <div class="card">
+            <img class="card__img"
+                 src="${p.imageUrl || '/img/tulen.jpg'}"
+                 alt="${p.name}">
+            <div class="card-text">
+              <h4 class="card-title">${p.name}</h4>
+              <p>${p.description || ''}</p>
+              <div class="price_container">
+                <strong class="card-price">${p.discountedPrice}$</strong>
+                <p class="card-price-lined">${p.price}$</p>
               </div>
             </div>
-          `).join('')}
-        </div>
-      `; }
+          </div>
+        `;
+                } else {
+                    // без скидки
+                    return `
+          <div class="card">
+            <img class="card__img"
+                 src="${p.imageUrl || '/img/tulen.jpg'}"
+                 alt="${p.name}">
+            <div class="card-text">
+              <h4 class="card-title">${p.name}</h4>
+              <p>${p.description || ''}</p>
+              <strong class="card-price">${p.price}$</strong>
+            </div>
+          </div>
+        `;
+                }
+            }).join('')}
+  </div>
+`; }
         } catch (e) {
             console.error(e);
             productContainer.innerHTML = `

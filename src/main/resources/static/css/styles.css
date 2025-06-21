@@ -16,8 +16,21 @@
     font-weight: lighter;
 }
 
-body {
+html, body {
     background-color: rgba(255, 255, 255, 0.89);
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1;         /* занимает всё доступное пространство */
+
 }
 
 .site-header {
@@ -75,29 +88,30 @@ body {
     background-color: rgba(255, 255, 255, 0.89);
     border-radius: 10px;
     margin: 20px;
+    margin-left: 100px;
     padding: 20px;
 }
 
 .cards-container {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    flex-wrap: wrap;
     overflow: hidden;
-    gap: 20px;
+    gap: 40px;
 }
 
 
 /* Убираем фиксированную высоту карточек */
 .card {
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 250px;
+    flex: 0 0 calc((100% - 2 * 20px) / 3);
+    min-width: 300px;
+    height: 400px;
+    max-width: 300px;
     background: rgba(222, 222, 222, 0.89);
     border-radius: 8px;
     overflow: hidden; /* Обязательно! */
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    /* УБИРАЕМ max-height и min-height! */
 }
 
 .card-content {
@@ -110,9 +124,10 @@ body {
 /* Фиксируем высоту изображения */
 .card__img {
     width: 100%;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
     display: block;
+    overflow: hidden;
 }
 
 /* Гарантируем место для текста */
@@ -130,12 +145,65 @@ body {
 }
 
 .card-price {
-    margin-top: auto; /* Прижимаем цену к низу */
+
     font-weight: bold;
-    color: #333;
+    /*color: #333;*/
     font-size: 18px;
+    color: crimson;
 }
 
+.card-price-lined {
+    text-decoration: line-through;
+}
+
+.price_container {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: flex-end;
+}
+
+.discount-percent {
+    color: crimson;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.68);
+    border: 0 solid #ddd;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.carousel-arrow:hover {
+    background: crimson;
+    transition: 0.3s;
+}
+
+.next {
+    right: 110px;
+}
+
+.prev {
+    left: +10px;
+}
 
 /* footer сайта */
 
@@ -143,10 +211,7 @@ body {
     padding: 10px 0;
     width: 100%;
     background-color: black;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 40px;
 }
 
 .footer-container {
@@ -188,6 +253,15 @@ body {
     margin-bottom: 5px;
 }
 
+.horizontal-product-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    gap: 20px;
+    width: 1260px;
+}
+
+
 
 /*///////////////////*/
 /*///////////////////*/
@@ -204,11 +278,11 @@ body {
 }
 
 .categories {
-    position: fixed;
     top: 60px;            /* высота header */
     bottom: 270px;         /* высота footer */
     left: 30px;           /* ваш левый отступ */
-    width: calc(20% - 30px);
+    width: 350px;
+    height: 570px;
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -257,17 +331,23 @@ body {
 
 /* Контейнер с карточками продуктов сдвигаем вправо */
 .categories_products_list {
-    margin-left: calc(20% + 30px);
+    margin-left: 40px;
+    height: 570px;
+    width: 1200px;
+
     padding: 20px;
+    overflow-y: auto;
+
+    scrollbar-color: crimson #f0f0f0;
 }
 
 .no-products p {
-    margin-left: 300px;
+    margin-left: 380px;
 }
 
 .no-products-image {
-    width: 30%;
-    height: 30%;
+    width: 40%;
+    height: 40%;
     object-fit: fill;
     display: block;
     margin-top: 40px;

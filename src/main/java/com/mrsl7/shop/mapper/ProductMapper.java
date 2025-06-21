@@ -3,10 +3,10 @@ package com.mrsl7.shop.mapper;
 import com.mrsl7.shop.dto.ProductDto;
 import com.mrsl7.shop.entity.Category;
 import com.mrsl7.shop.entity.Product;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
+import org.mapstruct.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
@@ -23,5 +23,18 @@ public interface ProductMapper {
         Category category = new Category();
         category.setId(categoryId);
         return category;
+    }
+
+    @AfterMapping
+    default void calcDiscount(@MappingTarget ProductDto dto, Product entity) {
+        if(entity.getDiscountPercent() == 0) {
+            dto.setDiscountedPrice(dto.getPrice());
+            return;
+        }
+        int d = entity.getDiscountPercent();
+        BigDecimal discounted = entity.getPrice()
+                .multiply(BigDecimal.valueOf(100 - d))
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        dto.setDiscountedPrice(discounted);
     }
 }

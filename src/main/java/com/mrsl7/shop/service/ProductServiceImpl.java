@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,6 +61,7 @@ public class ProductServiceImpl implements ProductService {
         existing.setDescription(dto.getDescription());
         existing.setPrice(dto.getPrice());
         existing.setQuantity(dto.getQuantity());
+        existing.setDiscountPercent(dto.getDiscountPercent());
         // Если есть категория в DTO — устанавливаем
         if (dto.getCategoryId() != null) {
             Category category = new Category();
@@ -84,5 +86,21 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByCategoryId(categoryId).stream()
                 .map(mapper::toProductDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductDto> getAllWithDiscount() {
+        List<ProductDto> products = productRepository.findAll()
+                .stream()
+                .map(mapper::toProductDto)
+                .toList();
+
+        List<ProductDto> result = new ArrayList<>();
+
+        for (ProductDto pr : products) {
+            if(pr.getDiscountPercent() > 0) { result.add(pr); }
+        }
+
+        return result;
     }
 }
