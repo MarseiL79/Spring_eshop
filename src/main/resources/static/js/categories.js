@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return `
           <div class="card">
             <img class="card__img"
-                 src="${p.imageUrl || '/img/tulen.jpg'}"
+                 src="${p.imageUrl || '/img/pion.jpg'}"
                  alt="${p.name}">
             <div class="card-text">
               <h4 class="card-title">${p.name}</h4>
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return `
           <div class="card">
             <img class="card__img"
-                 src="${p.imageUrl || '/img/tulen.jpg'}"
+                 src="${p.imageUrl || '/img/pion.jpg'}"
                  alt="${p.name}">
             <div class="card-text">
               <h4 class="card-title">${p.name}</h4>

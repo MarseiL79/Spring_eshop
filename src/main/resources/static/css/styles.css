@@ -17,7 +17,7 @@
 }
 
 html, body {
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: rgba(227, 227, 227, 0.89);
     height: 100%;
     margin: 0;
 }
@@ -30,7 +30,6 @@ body {
 
 .main {
     flex: 1;         /* занимает всё доступное пространство */
-
 }
 
 .site-header {
@@ -82,14 +81,17 @@ body {
     color: #000000;
     margin: 10px;
     font-weight: bold;
+    padding-bottom: 20px;
 }
 
 .wrapper {
     background-color: rgba(255, 255, 255, 0.89);
     border-radius: 10px;
-    margin: 20px;
-    margin-left: 100px;
     padding: 20px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .cards-container {
@@ -97,19 +99,23 @@ body {
     flex-wrap: wrap;
     overflow: hidden;
     gap: 40px;
+    background-color: #ffffff;
+    padding-left: 55px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #ffffff;
+    margin-left: 20px;
+    min-height: 77vh;
 }
-
 
 /* Убираем фиксированную высоту карточек */
 .card {
-    flex: 0 0 calc((100% - 2 * 20px) / 3);
-    min-width: 300px;
+    width: 300px;
     height: 400px;
-    max-width: 300px;
     background: rgba(222, 222, 222, 0.89);
     border-radius: 8px;
     overflow: hidden; /* Обязательно! */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.55);
     display: flex;
     flex-direction: column;
 }
@@ -154,6 +160,8 @@ body {
 
 .card-price-lined {
     text-decoration: line-through;
+    color: #5e5e5e;
+    text-decoration-thickness: 1px;
 }
 
 .price_container {
@@ -168,6 +176,7 @@ body {
 }
 
 .carousel-container {
+    background-color: #ffffff;
     position: relative;
     display: flex;
     align-items: center;
@@ -195,14 +204,19 @@ body {
 .carousel-arrow:hover {
     background: crimson;
     transition: 0.3s;
+    color: white;
+}
+
+.horizontal-product-scroll::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар в Chrome/Safari */
 }
 
 .next {
-    right: 110px;
+    right: 10px;
 }
 
 .prev {
-    left: +10px;
+    left: 10px;
 }
 
 /* footer сайта */
@@ -257,8 +271,17 @@ body {
     display: flex;
     flex-wrap: nowrap;
     overflow-y: auto;
+    justify-content: space-between;
+    width: 100%;
     gap: 20px;
-    width: 1260px;
+    background-color: #ffffff;
+}
+
+.horizontal-product-scroll div.card {
+    max-width: calc(20% - 16px);
+    min-width: calc(20% - 16px);
+    height: 400px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 
@@ -274,16 +297,14 @@ body {
 
 .categories_container {
     display: flex;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .categories {
-    top: 60px;            /* высота header */
-    bottom: 270px;         /* высота footer */
-    left: 30px;           /* ваш левый отступ */
     width: 350px;
-    height: 570px;
-
+    height: 100%;
+    max-height: 77vh;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-color: crimson #f0f0f0;
@@ -331,14 +352,13 @@ body {
 
 /* Контейнер с карточками продуктов сдвигаем вправо */
 .categories_products_list {
-    margin-left: 40px;
     height: 570px;
     width: 1200px;
 
-    padding: 20px;
     overflow-y: auto;
 
     scrollbar-color: crimson #f0f0f0;
+    background-color: rgba(227, 227, 227, 0.89);
 }
 
 .no-products p {

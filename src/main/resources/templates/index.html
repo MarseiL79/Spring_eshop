@@ -47,7 +47,7 @@
             <div class="horizontal-product-scroll">
                 <div class="card" th:each="p: ${productsWithDiscount}">
                     <img class="card__img" th:if="${p.imageUrl} != null" th:src="${p.imageUrl}">
-                    <img class="card__img" th:if="${p.imageUrl} == null" th:src="@{/img/tulen.jpg}">
+                    <img class="card__img" th:if="${p.imageUrl} == null" th:src="@{/img/pion.jpg}">
                     <div class="card-text">
                         <h4 class="card-title" th:text="${p.name}">Название</h4>
                         <p th:text="${p.description}">Описание</p>

@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: -320, behavior: 'smooth' });
+        carousel.scrollBy({ left: -292, behavior: 'smooth' });
     });
 
     nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: 320, behavior: 'smooth' });
+        carousel.scrollBy({ left: 292, behavior: 'smooth' });
     });
 
     carousel.addEventListener('scroll', updateArrows);
