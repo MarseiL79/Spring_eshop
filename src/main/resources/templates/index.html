@@ -11,6 +11,7 @@
 <body>
 
 
+
 <header class="site-header">
     <div class="header-container">
         <!-- Левая группа меню -->
@@ -19,7 +20,6 @@
                 <li><a href="http://localhost:8085">Главная</a></li>
                 <li><a href="#">О нас</a></li>
                 <li><a href="http://localhost:8085/categories">Категории</a></li>
-                <li><a href="#">Доставка и оплата</a></li>
             </ul>
         </div>
 
@@ -27,12 +27,13 @@
         <div class="nav-group">
             <span class="phone-number">8 (918) 127-60-61</span>
             <ul class="nav-list">
-                <li><a href="#">Заказать звонок</a></li>
                 <li><a href="#">Личный кабинет</a></li>
             </ul>
         </div>
     </div>
 </header>
+
+
 
 
 <main class="main">
@@ -45,7 +46,7 @@
             <button class="carousel-arrow prev">‹</button>
 
             <div class="horizontal-product-scroll">
-                <div class="card" th:each="p: ${productsWithDiscount}">
+                <a th:href="@{/product/{id}(id=${p.id})}" class="card" th:each="p: ${productsWithDiscount}">
                     <img class="card__img" th:if="${p.imageUrl} != null" th:src="${p.imageUrl}">
                     <img class="card__img" th:if="${p.imageUrl} == null" th:src="@{/img/pion.jpg}">
                     <div class="card-text">
@@ -57,7 +58,7 @@
                             <p class="discount-percent" th:text="'-'+${p.discountPercent}+'%'">Процент скидки</p>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <button class="carousel-arrow next">›</button>
@@ -65,6 +66,8 @@
 
     </div>
 </main>
+
+
 
 
 <footer class="site-footer">
@@ -112,6 +115,10 @@
         </div>
     </div>
 </footer>
+
+
+
+
 <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

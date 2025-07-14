@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Товары</title>
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title>Товар</title>
+    <link th:href="@{/css/styles.css}" type="text/css"
+          rel="stylesheet" />
     <link href="/img/pion.ico" rel="icon" />
 </head>
 <body>
@@ -36,18 +38,47 @@
 
 
 <main class="main">
-    <!--
-    <h2 th:text="${categoryName}">Имя категории</h2>
-    <div class="cards-container">
-        <div class="card" th:each="p : ${products}">
-            <img th:src="${p.imageUrl}" class="card__img" alt="" />
-            <div class="card-text">
-                <h4 class="card-title" th:text="${p.name}">Название</h4>
-                <p th:text="${p.description}">Описание</p>
-                <strong class="card-price" th:text="${p.price} + '₽'">Цена</strong>
-            </div>
+    <div class="product-container">
+
+        <div class="product-image-block">
+            <img class="card__img" th:if="${product.imageUrl} != null" th:src="${product.imageUrl}">
+            <img class="card__img" th:if="${product.imageUrl} == null" th:src="@{/img/pion.jpg}">
         </div>
-    </div>    -->
+
+
+        <div class="product-details-block">
+            <div class="detail">
+                <h2 th:text="${product.name.toUpperCase()}">Название товара</h2>
+                <h2 th:text="${product.discountedPrice}">Цена с учётом скидки</h2>
+            </div>
+
+            <div class="razmer-container" th:if="${category.name == 'Clothes'}">
+                <h2 th:text="'Размер: ' + ${product.name.toUpperCase()}">Размер</h2>
+            </div>
+
+            <div class="amount-container">
+                <h2 th:text="'Наличие: ' + ${product.quantity}">Кол-во</h2>
+            </div>
+
+            <form th:action="@{/cart/add}" method="post" class="add-to-cart-form">
+                <button type="submit" class="btn-fav">
+                    <img src="/img/fav-icon.png"       class="fav-icon default" alt="">
+                    <img src="/img/fav-icon-red.png"   class="fav-icon red"     alt="">
+                </button>
+                <button type="submit" class="btn-add">
+                    <img
+                            th:src="@{/img/cart-img.png}"
+                            alt="Корзина"
+                            class="cart-icon" />
+                    <div class="add-button-text">
+                        В КОРЗИНУ
+                    </div>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
 </main>
 
 
@@ -100,6 +131,19 @@
 </footer>
 
 
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('.btn-fav');
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            btn.classList.toggle('active');
+            // запрос к серверу для сохранения в избранном ......
+        });
+    });
+</script>
 
 
 </body>

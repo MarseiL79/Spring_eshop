@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.discountPercent && p.discountPercent !== 0) {
                     // есть скидка
                     return `
-          <div class="card">
+          <a href="product/${p.id}" class="card">
             <img class="card__img"
                  src="${p.imageUrl || '/img/pion.jpg'}"
                  alt="${p.name}">
@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="card-price-lined">${p.price}$</p>
               </div>
             </div>
-          </div>
+          </a>
         `;
                 } else {
                     // без скидки
                     return `
-          <div class="card">
+          <a href="product/${p.id}" class="card">
             <img class="card__img"
                  src="${p.imageUrl || '/img/pion.jpg'}"
                  alt="${p.name}">
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p>${p.description || ''}</p>
               <strong class="card-price">${p.price}$</strong>
             </div>
-          </div>
+          </a>
         `;
                 }
             }).join('')}
