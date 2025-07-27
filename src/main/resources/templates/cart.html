@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <title>Категории</title>
-  <link href="css/styles.css" type="text/css"
+  <meta charset="UTF-8">
+  <title>Товар</title>
+  <link th:href="@{/css/styles.css}" type="text/css"
         rel="stylesheet" />
   <link href="/img/pion.ico" rel="icon" />
 </head>
-
 <body>
 
 
@@ -38,21 +39,7 @@
 
 
 <main class="main">
-  <div class="categories_container">
-
-    <div class="categories">
-      <ul class="categories_list">
-        <li class="categories_list_element" th:each="c : ${categories}"
-            th:attr="data-id=${c.id}">
-          <a th:href="@{/categories/{id}/products(id=${c.id})}"
-             th:text="${c.name}">Категория</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="categories_products_list">
-      <!-- JavaScript (categories.js) -->
-    </div>
+  <div class="cart-container">
 
   </div>
 </main>
@@ -108,7 +95,5 @@
 
 
 
-
-<script th:src="@{/js/categories.js}"></script>
 </body>
 </html>

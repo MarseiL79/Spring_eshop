@@ -392,6 +392,8 @@ body {
     margin: 0 auto;
     padding: 30px 100px;
     box-sizing: border-box;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .product-image-block {
@@ -498,7 +500,7 @@ body {
 }
 
 .cart-icon {
-    width: 18px;    /* подберите подходящий вам размер */
+    width: 18px;
     height: 20px;
     object-fit: contain;
     transform: translateX(0) translateY(-2px);
@@ -511,3 +513,71 @@ body {
     margin: auto;
 }
 
+.path-to-product {
+    background-color: white;
+    font-size: 14px;
+    color: #666;
+    max-width: 90%;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-top: 15px;
+}
+
+.path-to-product a {
+    color: crimson;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.path-to-product span {
+    font-weight: bold;
+    color: crimson;
+}
+
+.path-to-product a:hover {
+}
+
+.path-to-product .sep {
+    margin: 0 6px;
+    color: #999;
+}
+
+
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+/*    account.html   */
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+
+.account-container {
+    background-color: crimson;
+
+    display: flex;
+    height: 600px;
+    margin: auto;
+}
+
+.header-cart-icon {
+    width: 20px;
+    height: 18px;
+}
+
+
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+/*    cart.html   */
+/*///////////////////*/
+/*///////////////////*/
+/*///////////////////*/
+
+
+.cart-container {
+    background-color: crimson;
+
+    display: flex;
+    height: 600px;
+    margin: auto;
+}

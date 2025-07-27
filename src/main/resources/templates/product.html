@@ -28,7 +28,8 @@
         <div class="nav-group">
             <span class="phone-number">8 (918) 127-60-61</span>
             <ul class="nav-list">
-                <li><a href="#">Личный кабинет</a></li>
+                <li><a href="http://localhost:8085/account">Личный кабинет</a></li>
+                <li><a href="http://localhost:8085/cart"><img class="header-cart-icon" th:src="@{/img/cart-img.png}"></a></li>
             </ul>
         </div>
     </div>
@@ -38,6 +39,18 @@
 
 
 <main class="main">
+
+    <nav class="path-to-product">
+        <a th:href="@{/}">Главная</a>
+        <span class="sep">›</span>
+        <a th:href="@{/categories}">Категории</a>
+        <span class="sep">›</span>
+        <a th:href="@{/categories/{id}(id=${category.id})}"
+           th:text="${category.name}">Категория</a>
+        <span class="sep">›</span>
+        <span th:text="${product.name}">Название товара</span>
+    </nav>
+
     <div class="product-container">
 
         <div class="product-image-block">
@@ -49,7 +62,10 @@
         <div class="product-details-block">
             <div class="detail">
                 <h2 th:text="${product.name.toUpperCase()}">Название товара</h2>
-                <h2 th:text="${product.discountedPrice}">Цена с учётом скидки</h2>
+                <div class="price_container">
+                    <strong class="card-price" th:text="${product.discountedPrice} + '$'">Цена со скидкой</strong>
+                    <p class="card-price-lined" th:text="${product.price} + '$'" th:if="${product.discountPercent} != 0">Цена без скидки</p>
+                </div>
             </div>
 
             <div class="razmer-container" th:if="${category.name == 'Clothes'}">
@@ -57,10 +73,10 @@
             </div>
 
             <div class="amount-container">
-                <h2 th:text="'Наличие: ' + ${product.quantity}">Кол-во</h2>
+                <h2 th:text="'Наличие: ' + ${product.quantity} + ' шт.'">Кол-во</h2>
             </div>
 
-            <form th:action="@{/cart/add}" method="post" class="add-to-cart-form">
+            <form th:action="@{/cart/add/{id}(id=${product.id})}" method="post" class="add-to-cart-form">
                 <button type="submit" class="btn-fav">
                     <img src="/img/fav-icon.png"       class="fav-icon default" alt="">
                     <img src="/img/fav-icon-red.png"   class="fav-icon red"     alt="">
@@ -79,6 +95,7 @@
         </div>
 
     </div>
+
 </main>
 
 
@@ -102,7 +119,7 @@
             <ul class="footer-list">
                 <li><h3>Для покупателей</h3></li>
                 <li><a href="#">Доставка и оплата</a></li>
-                <li><a href="#">Личный кабинет</a></li>
+                <li><a href="http://localhost:8085/account">Личный кабинет</a></li>
                 <li><a href="#">Обмен и возврат</a></li>
                 <li><a href="#">Вопрос-ответ</a></li>
             </ul>
