@@ -16,6 +16,12 @@ import java.util.Map;
 public class CartService {
     private final Map<Long, CartItem> items = new LinkedHashMap<>();
 
+    public int getItemCount() {
+        return items.values().stream()
+                .mapToInt(CartItem::getQuantity)
+                .sum();
+    }
+
     public void add(ProductDto p, int qty) {
         items.compute(p.getId(), (id, old) -> {
             if (old == null) {

@@ -3,6 +3,7 @@ package com.mrsl7.shop.web_controllers;
 import com.mrsl7.shop.service.CartService;
 import com.mrsl7.shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,10 @@ public class CartWebController {
     }
 
     @PostMapping("/add/{id}")
-    public String addToCart(@PathVariable Long id, @RequestParam(defaultValue="1") int qty) {
+    public ResponseEntity<Void> addToCart(@PathVariable Long id, @RequestParam(defaultValue="1") int qty) {
         var prod = productService.getById(id);
         cartService.add(prod, qty);
-        return "redirect:/cart";
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/clear")

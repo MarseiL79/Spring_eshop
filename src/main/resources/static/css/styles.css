@@ -39,13 +39,13 @@ body {
 }
 
 .header-container {
-    max-width: 1300px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     overflow: hidden;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 5vw;
 }
 
 .nav-group {
@@ -87,11 +87,9 @@ body {
 .wrapper {
     background-color: rgba(255, 255, 255, 0.89);
     border-radius: 10px;
-    padding: 20px;
-    width: calc(100% - 40px);
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 3vh;
+    width: auto;
+    margin: 3vh;
 }
 
 .cards-container {
@@ -232,7 +230,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 30px 150px;
+    padding: 5vh 10vh;
 }
 
 .footer-column {
@@ -271,17 +269,20 @@ body {
     display: flex;
     flex-wrap: nowrap;
     overflow-y: auto;
-    justify-content: space-between;
+    overflow-x: auto;
+    gap: 2vw;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
     width: 100%;
-    gap: 20px;
     background-color: #ffffff;
 }
 
 .horizontal-product-scroll a.card {
-    max-width: calc(20% - 16px);
-    min-width: calc(20% - 16px);
-    height: 400px;
+    min-width: 22vw;
+    max-width: 22vw;
+    min-height: 25vh;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    scroll-snap-align: start;
 }
 
 
@@ -303,7 +304,7 @@ body {
 
 .categories {
     width: 350px;
-    height: 100%;
+    height: auto;
     max-height: 77vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -352,8 +353,9 @@ body {
 
 /* Контейнер с карточками продуктов сдвигаем вправо */
 .categories_products_list {
-    height: 570px;
-    width: 1200px;
+    flex: 1;
+    min-height: 77vh;
+    max-height: 77vh;
 
     overflow-y: auto;
 
@@ -361,8 +363,15 @@ body {
     background-color: rgba(227, 227, 227, 0.89);
 }
 
+.no-products {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3vh;
+}
+
 .no-products p {
-    margin-left: 380px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .no-products-image {
@@ -370,9 +379,8 @@ body {
     height: 40%;
     object-fit: fill;
     display: block;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    margin-left: 300px;
+    margin: 0 auto;
+    align-content: center;
 }
 
 
@@ -578,6 +586,7 @@ body {
     background-color: crimson;
 
     display: flex;
-    height: 600px;
+    flex-direction: column;
+    min-height: 600px;
     margin: auto;
 }

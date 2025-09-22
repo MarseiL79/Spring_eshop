@@ -3,11 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.querySelector('.prev');
     const nextBtn = document.querySelector('.next');
 
-    function updateArrows() {
-        prevBtn.style.display = carousel.scrollLeft === 0 ? 'none' : 'flex';
-        nextBtn.style.display = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1 ? 'none' : 'flex';
-    }
-
+    // Убираем функцию updateArrows, чтобы стрелки не скрывались
     prevBtn.addEventListener('click', () => {
         carousel.scrollBy({ left: -292, behavior: 'smooth' });
     });
@@ -15,7 +11,4 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', () => {
         carousel.scrollBy({ left: 292, behavior: 'smooth' });
     });
-
-    carousel.addEventListener('scroll', updateArrows);
-    updateArrows(); // Инициализация при загрузке
 });

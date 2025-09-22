@@ -29,7 +29,7 @@
             <span class="phone-number">8 (918) 127-60-61</span>
             <ul class="nav-list">
                 <li><a href="http://localhost:8085/account">Личный кабинет</a></li>
-                <li><a href="http://localhost:8085/cart"><img class="header-cart-icon" th:src="@{/img/cart-img.png}"></a></li>
+                <li><a href="http://localhost:8085/cart"><img class="header-cart-icon" th:src="@{/img/cart-img.png}">(<span id="cart-count">[[${cartItemCount}]]</span>)</a></li>
             </ul>
         </div>
     </div>
@@ -76,11 +76,13 @@
                 <h2 th:text="'Наличие: ' + ${product.quantity} + ' шт.'">Кол-во</h2>
             </div>
 
-            <form th:action="@{/cart/add/{id}(id=${product.id})}" method="post" class="add-to-cart-form">
-                <button type="submit" class="btn-fav">
+            <form id="add-to-cart-form" class="add-to-cart-form">
+                <button type="button" class="btn-fav">
                     <img src="/img/fav-icon.png"       class="fav-icon default" alt="">
                     <img src="/img/fav-icon-red.png"   class="fav-icon red"     alt="">
                 </button>
+                <input type="hidden" name="productId" th:value="${product.id}" />
+                <input type="hidden" name="qty" value="1"/>
                 <button type="submit" class="btn-add">
                     <img
                             th:src="@{/img/cart-img.png}"
@@ -161,7 +163,7 @@
         });
     });
 </script>
-
+<script th:src="@{/js/cart.js}"></script>
 
 </body>
 </html>
